@@ -39,11 +39,11 @@ def ajustar_escala(ax, pontos):
     ax.set_zlim((z_min, z_min + max_range))
 
 # Parâmetros da célula unitária 
-a, b, c = 2, 2, 3  # Comprimentos das arestas 
-alpha, beta, gamma = 90, 90, 120  # Ângulos em graus
+a, b, c = 1, 1, 1  # Comprimentos das arestas 
+alpha, beta, gamma = 80, 80, 80  # Ângulos em graus
 N = 2  # Número de células em cada direção
 
-##monociclicaalpha, beta, gamma = 90, 80, 90  # Ângulos em graus
+
 # Gerar vetores e pontos
 v1, v2, v3 = gerar_vetores(a, b, c, alpha, beta, gamma)
 pontos = gerar_rede(v1, v2, v3, N)
@@ -58,8 +58,8 @@ for ponto in pontos:
 
 # Conectar os pontos com as arestas
 for ponto in pontos:
-    for vizinho in [ponto + v1, ponto + v2, ponto + v3]:  # Verifica vizinhos nas direções dos vetores
-        if any(np.allclose(vizinho, p) for p in pontos):  # Conectar apenas se o vizinho existir
+    for vizinho in [ponto + v1, ponto + v2, ponto + v3]:  
+        if any(np.allclose(vizinho, p) for p in pontos): 
             ax.plot([ponto[0], vizinho[0]], [ponto[1], vizinho[1]], [ponto[2], vizinho[2]], color='black')
 
 # Ajustar escala do gráfico
@@ -69,5 +69,5 @@ ajustar_escala(ax, pontos)
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
-plt.title(f"Trigonal C, Hexagonal P")
+plt.title(f"Trigonal R")
 plt.show()
